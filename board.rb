@@ -1,4 +1,5 @@
 require_relative "tile.rb"
+require "byebug"
 
 class Board 
 
@@ -14,5 +15,45 @@ class Board
             end 
         end   
     end 
-    
+
+    def get_neighbors 
+        board.each do |row| 
+            row.each do |tile| 
+                tile_row = tile.position[0] 
+                tile_col = tile.position[1] 
+
+                #get neighbors above tile 
+                row_above_tile = tile_row - 1 
+                col_above_tile = tile_col - 1 
+                3.times do 
+                    tile.neighbors << [row_above_tile, col_above_tile] if in_valid_range?(row_above_tile) && in_valid_range?(col_above_tile)
+                    col_above_tile += 1 
+                end 
+
+                #get neighbors beside tile 
+                row_beside_tile = tile_row 
+                col_beside_tile = tile_col - 1 
+                2.times do 
+                    tile.neighbors << [row_beside_tile, col_beside_tile] if in_valid_range?(row_beside_tile) && in_valid_range?(col_beside_tile)
+                    col_beside_tile += 2 
+                end 
+
+                #get neighbors below tile 
+                row_below_tile = tile_row + 1 
+                col_below_tile = tile_col - 1 
+                3.times do 
+                    tile.neighbors << [row_below_tile, col_below_tile] if in_valid_range?(row_below_tile) && in_valid_range?(col_below_tile) 
+                    col_below_tile += 1 
+                end 
+            end 
+        end 
+    end 
+
+    def in_valid_range?(num)
+        (0..8).include?(num) 
+    end 
+
+    private 
+    attr_reader :board 
+
 end 

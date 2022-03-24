@@ -8,8 +8,10 @@ class Minesweeper
     end 
 
     def run 
-
+        game.get_neighbors
     end 
+
+    attr_reader :game 
 
 end 
 
