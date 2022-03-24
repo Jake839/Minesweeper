@@ -1,7 +1,7 @@
 class Tile 
 
     attr_reader :position
-    attr_accessor :neighbors
+    attr_accessor :has_bomb, :neighbors
 
     def initialize(row, col)
         @has_bomb = false 
@@ -11,5 +11,5 @@ class Tile
         @position = [row, col]
         @neighbors = []
     end 
-    
+
 end 

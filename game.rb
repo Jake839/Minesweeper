@@ -9,8 +9,10 @@ class Minesweeper
 
     def run 
         game.get_neighbors
+        game.set_bombs 
     end 
 
+    private 
     attr_reader :game 
 
 end 

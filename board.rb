@@ -49,6 +49,26 @@ class Board
         end 
     end 
 
+    def get_all_positions
+        all_positions = []
+        board.each do |row| 
+            row.each { |tile| all_positions << tile.position } 
+        end 
+        all_positions
+    end 
+
+    def set_bombs
+        all_positions = get_all_positions 
+        bomb_ct = 0 
+        until bomb_ct == 10 
+            selected_position = all_positions.sample 
+            if board[selected_position.first][selected_position.last].has_bomb == false 
+                board[selected_position.first][selected_position.last].has_bomb = true 
+                bomb_ct += 1 
+            end 
+        end 
+    end 
+
     def in_valid_range?(num)
         (0..8).include?(num) 
     end 
