@@ -19,6 +19,11 @@ class Minesweeper
             
         #end 
 
+        if game.won? 
+            puts "Congratulations! You beat Minesweeper!"
+        else 
+            puts "You hit a bomb. You lose. Game over."
+        end 
     end 
 
 end 
