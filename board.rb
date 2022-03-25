@@ -139,7 +139,7 @@ class Board
                     if tile.flagged
                         tile.value = 'F'
                     else     
-                        tile.value = '_'
+                        tile.value = '*'
                     end 
                 end 
                 row_arr << tile.value 
