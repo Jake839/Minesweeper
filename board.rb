@@ -69,12 +69,109 @@ class Board
         end 
     end 
 
+    #method uses syntactic sugar to call a tile in the board 
     def [](row, col)
         board[row][col]
     end 
 
     def in_valid_range?(num)
         (0..8).include?(num) 
+    end 
+
+    #method prints board 
+    def render 
+        #print title 
+        puts "  MINESWEEPER BOARD"
+
+        #print x-axis at top 
+        print " "
+        (0..8).to_a.each { |i| print " #{i}" }
+
+        #print y-axis on left. assign tile values and print them. 
+        board.each_with_index do |row, row_idx| 
+            print "\n#{row_idx} "
+            row.each do |tile| 
+                if tile.revealed
+                    if tile.surrounding_bombs == 0 
+                        tile.value = '_'
+                    else 
+                        tile.value = tile.surrounding_bombs 
+                    end 
+                else 
+                    if tile.flagged
+                        tile.value = 'F'
+                    else     
+                        tile.value = '_'
+                    end 
+                end 
+                print "#{tile.value} "
+            end 
+        end 
+
+        true 
+    end 
+
+    #method renders an ASCII grid based on a 2D array
+    def drawgrid(args, boxlen=3)
+        #Define box drawing characters
+        side = '│'
+        topbot = '─'
+        tl = '┌'
+        tr = '┐'
+        bl = '└'
+        br = '┘'
+        lc = '├'
+        rc = '┤'
+        tc = '┬'
+        bc = '┴'
+        crs = '┼'
+        ##############################
+        draw = []
+        args.each_with_index do |row, rowindex|
+            # TOP OF ROW Upper borders
+            row.each_with_index do |col, colindex|
+                if rowindex == 0
+                    colindex == 0 ? start = tl : start = tc
+                    draw << start + (topbot*boxlen)
+                    colindex == row.length - 1 ? draw << tr : ""
+                end
+            end
+            draw << "\n" if rowindex == 0
+
+            # MIDDLE OF ROW: DATA
+            row.each do |col|
+            draw << side + col.to_s.center(boxlen)
+            end
+            draw << side + "\n"
+
+            # END OF ROW
+            row.each_with_index do |col, colindex|
+                if colindex == 0
+                    rowindex == args.length - 1 ? draw << bl : draw << lc
+                    draw << (topbot*boxlen)
+                else
+                    rowindex == args.length - 1 ? draw << bc : draw << crs
+                    draw << (topbot*boxlen)
+                end
+                endchar = rowindex == args.length - 1 ? br : rc
+
+                #Overhang elimination if the next row is shorter
+                if args[rowindex+1]
+                    if args[rowindex+1].length < args[rowindex].length
+                    endchar = br
+                    end
+                end
+                colindex == row.length - 1 ? draw << endchar : ""
+            end
+
+            draw << "\n"
+        end
+
+        draw.each do |char|
+            print char
+        end
+
+        true
     end 
 
     private 
