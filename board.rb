@@ -108,9 +108,25 @@ class Board
         tiles_with_bombs
     end 
 
+    def get_player_entry_position(player_entry)
+        player_entry[1..-1].split(',').map { |char| Integer(char) }
+    end 
+
+    def reveal_tile(position)
+        self[position.first, position.last].revealed = true 
+    end 
+
+    def flag_tile(position)
+        self[position.first, position.last].flagged = true 
+    end 
+
     def update_tile(player_entry)
-
-
+        position = get_player_entry_position(player_entry)
+        if player_entry[0] == 'r' 
+            reveal_tile(position)
+        elsif player_entry[0] == 'f'
+            flag_tile(position)
+        end 
     end 
 
     def won? 
@@ -127,7 +143,7 @@ class Board
         won? || lost? 
     end 
 
-    #method prints board 
+    #method assigns tile values and prints board 
     def render 
         #assign tile values. load minesweeper board in 2D array so it can be drawn by drawgrid method. 
         minesweeper_board = []
@@ -144,7 +160,7 @@ class Board
                     if tile.flagged
                         tile.value = 'F'
                     else     
-                        tile.value = '*cod'
+                        tile.value = '*'
                     end 
                 end 
                 row_arr << tile.value 
