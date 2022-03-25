@@ -10,6 +10,11 @@ class Minesweeper
     def run 
         game.get_neighbors
         game.set_bombs 
+        until game.won? 
+            game.calculate_surrounding_bombs 
+            game.render 
+            
+        end 
     end 
 
     private 

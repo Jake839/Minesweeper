@@ -80,16 +80,10 @@ class Board
 
     #method prints board 
     def render 
-        #print title 
-        puts "  MINESWEEPER BOARD"
-
-        #print x-axis at top 
-        print " "
-        (0..8).to_a.each { |i| print " #{i}" }
-
-        #print y-axis on left. assign tile values and print them. 
-        board.each_with_index do |row, row_idx| 
-            print "\n#{row_idx} "
+        #assign tile values. load minesweeper board in 2D array so it can be drawn by drawgrid method. 
+        minesweeper_board = []
+        board.each do |row| 
+            row_arr = []
             row.each do |tile| 
                 if tile.revealed
                     if tile.surrounding_bombs == 0 
@@ -104,11 +98,13 @@ class Board
                         tile.value = '_'
                     end 
                 end 
-                print "#{tile.value} "
+                row_arr << tile.value 
             end 
+            minesweeper_board << row_arr
         end 
 
-        true 
+        #draw minesweeper board 
+        drawgrid(minesweeper_board) 
     end 
 
     #method renders an ASCII grid based on a 2D array
@@ -116,17 +112,19 @@ class Board
         #Define box drawing characters
         side = '│'
         topbot = '─'
-        tl = '┌'
+        tl = ' ┌'
         tr = '┐'
-        bl = '└'
+        bl = ' └'
         br = '┘'
-        lc = '├'
+        lc = ' ├'
         rc = '┤'
         tc = '┬'
         bc = '┴'
         crs = '┼'
         ##############################
-        draw = []
+        board_row_idx = 0 
+        draw = [] 
+
         args.each_with_index do |row, rowindex|
             # TOP OF ROW Upper borders
             row.each_with_index do |col, colindex|
@@ -139,8 +137,12 @@ class Board
             draw << "\n" if rowindex == 0
 
             # MIDDLE OF ROW: DATA
-            row.each do |col|
-            draw << side + col.to_s.center(boxlen)
+            row.each_with_index do |col, index|
+                if ((board_row_idx % 9 == 0 && board_row_idx >= 9) || board_row_idx == 0) && index == 0 
+                    draw << "#{board_row_idx / 9}" 
+                end 
+                draw << side + col.to_s.center(boxlen)
+                board_row_idx += 1 
             end
             draw << side + "\n"
 
@@ -167,9 +169,10 @@ class Board
             draw << "\n"
         end
 
-        draw.each do |char|
-            print char
-        end
+        puts "MINESWEEPER\n".rjust(25)
+        (0...9).each { |i| print "   #{i}" } 
+        puts "\n"
+        draw.each { |char| print "#{char}" } 
 
         true
     end 
@@ -178,3 +181,5 @@ class Board
     attr_reader :board 
 
 end 
+
+
