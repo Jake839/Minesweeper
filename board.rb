@@ -108,6 +108,11 @@ class Board
         tiles_with_bombs
     end 
 
+    def update_tile(player_entry)
+
+
+    end 
+
     def won? 
         tiles_without_bombs = get_tiles_without_bombs 
         tiles_without_bombs.all? { |tile| tile.revealed }
@@ -139,7 +144,7 @@ class Board
                     if tile.flagged
                         tile.value = 'F'
                     else     
-                        tile.value = '*'
+                        tile.value = '*cod'
                     end 
                 end 
                 row_arr << tile.value 

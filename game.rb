@@ -17,10 +17,11 @@ class Minesweeper
     def introduction 
         puts "Welcome to Minesweeper!"
         puts "You win the game when you reveal all tiles that don't have a bomb."
-        puts "You lose if you hit a bomb. There are 10 bombs on the board."
+        puts "You lose if you hit a bomb." 
+        puts "Numbers on the board show the number of adjacent bombs."
         puts "To reveal a tile, enter r and then the tile's coordinates. For ex., to reveal tile 0,0 you'd enter r0,0"
         puts "If you think a tile has a bomb, then you can flag it. For ex., to flag tile 0,0 you'd enter f0,0"
-        puts "To recap, enter r to reveal or f to flag and then enter the tile's coordinates."
+        puts "To recap, enter r to reveal or f to flag and then enter the tile's coordinates. Coordinates must be entered with a comma between them as shown in the above examples."
         puts "Good Luck!"
     end 
 
@@ -31,7 +32,9 @@ class Minesweeper
         #until game.over? 
             game.render 
             player_entry = player.get_entry 
+            game.update_tile(player_entry)
             #update tile 
+            #reveal appropriate tiles 
             #clear 
         #end 
 
