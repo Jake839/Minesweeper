@@ -92,6 +92,36 @@ class Board
         (0..8).include?(num) 
     end 
 
+    def get_tiles_without_bombs
+        tiles_without_bombs = []
+        board.each do |row| 
+            row.each { |tile| tiles_without_bombs << tile unless tile.has_bomb } 
+        end 
+        tiles_without_bombs
+    end 
+
+    def get_tiles_with_bombs
+        tiles_with_bombs = []
+        board.each do |row| 
+            row.each { |tile| tiles_with_bombs << tile if tile.has_bomb } 
+        end 
+        tiles_with_bombs
+    end 
+
+    def won? 
+        tiles_without_bombs = get_tiles_without_bombs 
+        tiles_without_bombs.all? { |tile| tile.revealed }
+    end 
+
+    def lost? 
+        tiles_with_bombs = get_tiles_with_bombs 
+        tiles_with_bombs.any? { |tile| tile.revealed }
+    end 
+
+    def over? 
+        won? || lost? 
+    end 
+
     #method prints board 
     def render 
         #assign tile values. load minesweeper board in 2D array so it can be drawn by drawgrid method. 
