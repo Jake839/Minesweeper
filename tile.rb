@@ -1,7 +1,7 @@
 class Tile 
 
-    attr_reader :flagged, :position, :revealed
-    attr_accessor :has_bomb, :neighbors, :value 
+    attr_reader :position
+    attr_accessor :flagged, :has_bomb, :neighbors, :revealed, :surrounding_bombs, :value 
 
     def initialize(row, col)
         @has_bomb = false 

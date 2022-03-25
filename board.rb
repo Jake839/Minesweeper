@@ -69,6 +69,20 @@ class Board
         end 
     end 
 
+    #method calculates the surrounding bombs for every tile 
+    def calculate_surrounding_bombs
+        board.each do |row| 
+            row.each do |tile| 
+                bombs = 0 
+                tile.neighbors.each do |neighbor| 
+                    tile_neighbor = self[neighbor.first, neighbor.last]
+                    bombs += 1 if tile_neighbor.has_bomb
+                end 
+                tile.surrounding_bombs = bombs
+            end 
+        end 
+    end 
+
     #method uses syntactic sugar to call a tile in the board 
     def [](row, col)
         board[row][col]
