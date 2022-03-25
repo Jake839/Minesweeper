@@ -1,5 +1,4 @@
 require_relative "board.rb"
-require_relative "player.rb"
 
 class Minesweeper 
 
@@ -11,7 +10,7 @@ class Minesweeper
         @game = Board.new(Array.new(9) { Array.new(9) })
         print "\nEnter your name: "
         user_name = gets.chomp 
-        @player = Player.new(user_name)
+        @player = user_name
     end 
 
     def introduction 
@@ -29,22 +28,64 @@ class Minesweeper
         game.get_neighbors
         game.set_bombs 
         game.calculate_surrounding_bombs 
-        #until game.over? 
-            game.render 
-            player_entry = player.get_entry 
+        game.render 
+        until game.over? 
+            valid_reveal = false 
+            while !valid_reveal
+                player_entry = get_entry 
+                position = game.get_player_entry_position(player_entry)
+                if game[position.first, position.last].revealed == true 
+                    system("clear")
+                    game.render 
+                    puts "Tile #{position.first},#{position.last} is already revealed. Choose a tile that hasn't been revealed."
+                else 
+                    valid_reveal = true 
+                end 
+            end 
             game.update_tile(player_entry)
-            #update tile 
+            system("clear")
+            game.render 
             #reveal appropriate tiles 
-            #clear 
-        #end 
+        end 
+        
+        if game.won? 
+            puts "Congratulations! You beat Minesweeper!"
+        else 
+            #make code so all bombs are shown 
+            puts "You hit a bomb. You lose. Game over."
+        end 
+    end 
 
-        # game.render 
-        # if game.won? 
-        #     puts "Congratulations! You beat Minesweeper!"
-        # else 
-        #     #make code so all bombs are shown 
-        #     puts "You hit a bomb. You lose. Game over."
-        # end 
+    def get_entry
+        valid_entry = false 
+        while !valid_entry
+            print "#{player}, make an entry: "
+            user_entry = gets.chomp 
+            if valid_user_entry?(user_entry) 
+                valid_entry = true 
+            else 
+                system("clear")
+                game.render 
+                puts "Invalid entry. Please make a valid entry."
+                puts "Example to reveal tile 0,0: r0,0"
+                puts "Example to flag tile 0,0: f0,0"
+            end 
+        end 
+        user_entry
+    end 
+
+    def valid_user_entry?(user_entry)
+        user_entry.downcase! 
+        return false if user_entry[0] != 'r' && user_entry[0] != 'f'
+        user_entry = user_entry[1..-1]
+        return false if !user_entry.include?(',')
+        arr = user_entry.split(',')
+        return false if arr.any? { |char| char.length != 1 } 
+        if arr.all? { |char| char.ord >= 48 && char.ord <= 56 }
+            true 
+        else 
+            false 
+        end 
     end 
 
 end 
