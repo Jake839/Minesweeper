@@ -62,11 +62,15 @@ class Board
         bomb_ct = 0 
         until bomb_ct == 10 
             selected_position = all_positions.sample 
-            if board[selected_position.first][selected_position.last].has_bomb == false 
-                board[selected_position.first][selected_position.last].has_bomb = true 
+            if self[selected_position.first, selected_position.last].has_bomb == false 
+                self[selected_position.first, selected_position.last].has_bomb = true 
                 bomb_ct += 1 
             end 
         end 
+    end 
+
+    def [](row, col)
+        board[row][col]
     end 
 
     def in_valid_range?(num)
