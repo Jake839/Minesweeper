@@ -50,7 +50,6 @@ class Minesweeper
             game.update_tile(player_entry)
             system("clear")
             game.render 
-            #reveal appropriate tiles 
         end 
 
         if game.won? 

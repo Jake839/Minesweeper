@@ -128,11 +128,35 @@ class Board
         position = get_player_entry_position(player_entry)
         if player_entry[0] == 'r' 
             reveal_tile(position)
+            reveal_neighbor_tiles(position)
         elsif player_entry[0] == 'f'
             flag_tile(position)
         elsif player_entry[0] == 'u'
             unflag_tile(position)
         end 
+    end 
+
+    def update_neighbors(revealed_tiles)
+        neighbors = []
+        revealed_tiles.each do |revealed_tile| 
+            neighbors_of_revealed_tile = self[revealed_tile.first, revealed_tile.last].neighbors
+            neighbors_of_revealed_tile.each { |neighbor_of_revealed_tile| neighbors << neighbor_of_revealed_tile }
+        end 
+        neighbors.uniq 
+    end 
+
+    def reveal_neighbor_tiles(position)
+        neighbors = self[position.first, position.last].neighbors
+        bombs_in_neighbors = false 
+        while !bombs_in_neighbors 
+            if neighbors.any? { |neighbor| self[neighbor.first, neighbor.last].has_bomb }
+                bombs_in_neighbors = true 
+                neighbors.each { |neighbor| reveal_tile(neighbor) unless self[neighbor.first, neighbor.last].has_bomb } 
+            else 
+                neighbors.each { |neighbor| reveal_tile(neighbor) }
+                neighbors = update_neighbors(neighbors)
+            end 
+        end   
     end 
 
     def reveal_all_bombs
@@ -167,7 +191,7 @@ class Board
                         tile.value = 'B'
                     else 
                         if tile.surrounding_bombs == 0 
-                            tile.value = '_'
+                            tile.value = ' '
                         else 
                             tile.value = tile.surrounding_bombs 
                         end 
