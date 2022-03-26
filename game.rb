@@ -36,30 +36,35 @@ class Minesweeper
                 player_entry = get_entry 
                 position = game.get_player_entry_position(player_entry)
                 if game[position.first, position.last].flagged && player_entry[0] != 'u'
-                    system("clear")
-                    game.render 
+                    print_board 
                     puts "Tile #{position.first},#{position.last} is flagged. To unflag this tile, enter u#{position.first},#{position.last}"
                 elsif game[position.first, position.last].revealed
-                    system("clear")
-                    game.render 
+                    print_board
                     puts "Tile #{position.first},#{position.last} is already revealed. Choose a tile that hasn't been revealed."
                 else 
                     valid_reveal = true 
                 end 
             end 
             game.update_tile(player_entry)
-            system("clear")
-            game.render 
+            print_board
         end 
 
+        finish_game
+    end 
+
+    def finish_game 
         if game.won? 
             puts "Congratulations! You beat Minesweeper!"
         else 
             game.reveal_all_bombs 
-            system("clear")
-            game.render 
+            print_board
             puts "You hit a bomb. You lose. Game over."
         end 
+    end 
+
+    def print_board 
+        system("clear")
+        game.render 
     end 
 
     def get_entry
@@ -70,8 +75,7 @@ class Minesweeper
             if valid_user_entry?(user_entry) 
                 valid_entry = true 
             else 
-                system("clear")
-                game.render 
+                print_board
                 puts "Invalid entry. Please make a valid entry."
                 puts "Example to reveal tile 0,0: r0,0"
                 puts "Example to flag tile 0,0: f0,0"
@@ -86,9 +90,9 @@ class Minesweeper
         return false if user_entry[0] != 'r' && user_entry[0] != 'f' && user_entry[0] != 'u'
         user_entry = user_entry[1..-1]
         return false if !user_entry.include?(',')
-        arr = user_entry.split(',')
-        return false if arr.any? { |char| char.length != 1 } 
-        if arr.all? { |char| char.ord >= 48 && char.ord <= 56 }
+        pos_arr = user_entry.split(',')
+        return false if pos_arr.any? { |char| char.length != 1 } 
+        if pos_arr.all? { |char| char.ord >= 48 && char.ord <= 56 }
             true 
         else 
             false 
