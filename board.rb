@@ -129,6 +129,12 @@ class Board
         end 
     end 
 
+    def reveal_all_bombs
+        board.each do |row| 
+            row.each { |tile| tile.revealed = true if tile.has_bomb } 
+        end 
+    end 
+
     def won? 
         tiles_without_bombs = get_tiles_without_bombs 
         tiles_without_bombs.all? { |tile| tile.revealed }
@@ -151,10 +157,14 @@ class Board
             row_arr = []
             row.each do |tile| 
                 if tile.revealed
-                    if tile.surrounding_bombs == 0 
-                        tile.value = '_'
+                    if tile.has_bomb 
+                        tile.value = 'B'
                     else 
-                        tile.value = tile.surrounding_bombs 
+                        if tile.surrounding_bombs == 0 
+                            tile.value = '_'
+                        else 
+                            tile.value = tile.surrounding_bombs 
+                        end 
                     end 
                 else 
                     if tile.flagged

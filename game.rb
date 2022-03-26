@@ -47,11 +47,13 @@ class Minesweeper
             game.render 
             #reveal appropriate tiles 
         end 
-        
+
         if game.won? 
             puts "Congratulations! You beat Minesweeper!"
         else 
-            #make code so all bombs are shown 
+            game.reveal_all_bombs 
+            system("clear")
+            game.render 
             puts "You hit a bomb. You lose. Game over."
         end 
     end 
