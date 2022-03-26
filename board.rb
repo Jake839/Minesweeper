@@ -120,12 +120,18 @@ class Board
         self[position.first, position.last].flagged = true 
     end 
 
+    def unflag_tile(position)
+        self[position.first, position.last].flagged = false 
+    end 
+
     def update_tile(player_entry)
         position = get_player_entry_position(player_entry)
         if player_entry[0] == 'r' 
             reveal_tile(position)
         elsif player_entry[0] == 'f'
             flag_tile(position)
+        elsif player_entry[0] == 'u'
+            unflag_tile(position)
         end 
     end 
 
