@@ -1,8 +1,11 @@
 require_relative "board.rb"
+require 'yaml'
+require 'byebug'
 
 class Minesweeper 
 
-    attr_reader :game, :player 
+    attr_accessor :saved_game
+    attr_reader :game, :player
 
     #initialize a 2D array of a 9 x 9 minesweeper board 
     def initialize
@@ -11,6 +14,7 @@ class Minesweeper
         print "\nEnter your name: "
         user_name = gets.chomp 
         @player = user_name
+        @saved_game = nil 
     end 
 
     def introduction 
@@ -30,10 +34,15 @@ class Minesweeper
         game.set_bombs 
         game.calculate_surrounding_bombs 
         game.render 
-        until game.over? 
+        until game.over?
             player_entry = get_valid_player_entry
-            game.update_tile(player_entry)
-            print_board
+            if is_entry_s?(player_entry)
+                @saved_game = save
+                game.saved = true 
+            else 
+                game.update_tile(player_entry)
+                print_board
+            end 
         end 
         finish_game
     end 
@@ -42,22 +51,28 @@ class Minesweeper
         valid_reveal = false 
         while !valid_reveal
             player_entry = get_entry 
-            position = game.get_player_entry_position(player_entry)
-            if game[position.first, position.last].flagged && player_entry[0] != 'u'
-                print_board 
-                puts "Tile #{position.first},#{position.last} is flagged. To unflag this tile, enter u#{position.first},#{position.last}"
-            elsif game[position.first, position.last].revealed
-                print_board
-                puts "Tile #{position.first},#{position.last} is already revealed. Choose a tile that hasn't been revealed."
-            else 
+            if is_entry_s?(player_entry)
                 valid_reveal = true 
+            else 
+                position = game.get_player_entry_position(player_entry)
+                if game[position.first, position.last].flagged && player_entry[0] != 'u'
+                    print_board 
+                    puts "Tile #{position.first},#{position.last} is flagged. To unflag this tile, enter u#{position.first},#{position.last}"
+                elsif game[position.first, position.last].revealed
+                    print_board
+                    puts "Tile #{position.first},#{position.last} is already revealed. Choose a tile that hasn't been revealed."
+                else 
+                    valid_reveal = true 
+                end 
             end 
         end 
         player_entry
     end 
 
     def finish_game 
-        if game.won? 
+        if game.saved       
+            puts "Game saved to saved_game."
+        elsif game.won? 
             puts "Congratulations! You beat Minesweeper!"
         else 
             game.reveal_all_bombs 
@@ -71,11 +86,16 @@ class Minesweeper
         game.render 
     end 
 
+    def is_entry_s?(entry)
+        entry == 's'
+    end 
+
     def get_entry
         valid_entry = false 
         while !valid_entry
-            print "#{player}, make an entry: "
-            user_entry = gets.chomp 
+            puts "#{player}, make an entry or enter s to save game."
+            print "Entry: "
+            user_entry = gets.chomp.downcase  
             if valid_user_entry?(user_entry) 
                 valid_entry = true 
             else 
@@ -90,7 +110,7 @@ class Minesweeper
     end 
 
     def valid_user_entry?(user_entry)
-        user_entry.downcase! 
+        return true if is_entry_s?(user_entry)
         return false if user_entry[0] != 'r' && user_entry[0] != 'f' && user_entry[0] != 'u'
         user_entry = user_entry[1..-1]
         return false if !user_entry.include?(',')
@@ -101,6 +121,10 @@ class Minesweeper
         else 
             false 
         end 
+    end 
+
+    def save 
+        self.to_yaml 
     end 
 
 end 
