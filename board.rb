@@ -26,7 +26,7 @@ class Board
                 row_above_tile = tile_row - 1 
                 col_above_tile = tile_col - 1 
                 3.times do 
-                    tile.neighbors << [row_above_tile, col_above_tile] if in_valid_range?(row_above_tile) && in_valid_range?(col_above_tile)
+                    tile.neighbors << [row_above_tile, col_above_tile] if valid_neighbor?(row_above_tile, col_above_tile)
                     col_above_tile += 1 
                 end 
 
@@ -34,7 +34,7 @@ class Board
                 row_beside_tile = tile_row 
                 col_beside_tile = tile_col - 1 
                 2.times do 
-                    tile.neighbors << [row_beside_tile, col_beside_tile] if in_valid_range?(row_beside_tile) && in_valid_range?(col_beside_tile)
+                    tile.neighbors << [row_beside_tile, col_beside_tile] if valid_neighbor?(row_beside_tile, col_beside_tile)
                     col_beside_tile += 2 
                 end 
 
@@ -42,7 +42,7 @@ class Board
                 row_below_tile = tile_row + 1 
                 col_below_tile = tile_col - 1 
                 3.times do 
-                    tile.neighbors << [row_below_tile, col_below_tile] if in_valid_range?(row_below_tile) && in_valid_range?(col_below_tile) 
+                    tile.neighbors << [row_below_tile, col_below_tile] if valid_neighbor?(row_below_tile, col_below_tile) 
                     col_below_tile += 1 
                 end 
             end 
@@ -86,6 +86,10 @@ class Board
     #method uses syntactic sugar to call a tile in the board 
     def [](row, col)
         board[row][col]
+    end 
+
+    def valid_neighbor?(row, col)
+        in_valid_range?(row) && in_valid_range?(col)
     end 
 
     def in_valid_range?(num)
