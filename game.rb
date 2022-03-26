@@ -31,25 +31,29 @@ class Minesweeper
         game.calculate_surrounding_bombs 
         game.render 
         until game.over? 
-            valid_reveal = false 
-            while !valid_reveal
-                player_entry = get_entry 
-                position = game.get_player_entry_position(player_entry)
-                if game[position.first, position.last].flagged && player_entry[0] != 'u'
-                    print_board 
-                    puts "Tile #{position.first},#{position.last} is flagged. To unflag this tile, enter u#{position.first},#{position.last}"
-                elsif game[position.first, position.last].revealed
-                    print_board
-                    puts "Tile #{position.first},#{position.last} is already revealed. Choose a tile that hasn't been revealed."
-                else 
-                    valid_reveal = true 
-                end 
-            end 
+            player_entry = get_valid_player_entry
             game.update_tile(player_entry)
             print_board
         end 
-
         finish_game
+    end 
+
+    def get_valid_player_entry 
+        valid_reveal = false 
+        while !valid_reveal
+            player_entry = get_entry 
+            position = game.get_player_entry_position(player_entry)
+            if game[position.first, position.last].flagged && player_entry[0] != 'u'
+                print_board 
+                puts "Tile #{position.first},#{position.last} is flagged. To unflag this tile, enter u#{position.first},#{position.last}"
+            elsif game[position.first, position.last].revealed
+                print_board
+                puts "Tile #{position.first},#{position.last} is already revealed. Choose a tile that hasn't been revealed."
+            else 
+                valid_reveal = true 
+            end 
+        end 
+        player_entry
     end 
 
     def finish_game 
