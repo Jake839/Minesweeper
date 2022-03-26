@@ -62,15 +62,15 @@ class Board
         bomb_ct = 0 
         until bomb_ct == 10 
             selected_position = all_positions.sample 
-            if position_has_no_bomb?(selected_position)
+            unless position_has_bomb?(selected_position)
                 set_bomb(selected_position)
                 bomb_ct += 1 
             end 
         end 
     end 
 
-    def position_has_no_bomb?(position)
-        self[position.first, position.last].has_bomb == false 
+    def position_has_bomb?(position)
+        self[position.first, position.last].has_bomb
     end 
 
     def set_bomb(position) 
