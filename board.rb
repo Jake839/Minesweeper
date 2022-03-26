@@ -148,24 +148,40 @@ class Board
         end 
     end 
 
+    def get_neighbors_of_position(position)
+        self[position.first, position.last].neighbors
+    end 
+
+    def any_neighbors_have_bombs?(neighbors)
+        neighbors.any? { |neighbor| self[neighbor.first, neighbor.last].has_bomb }
+    end 
+
+    def reveal_neighbors_without_bombs(neighbors) 
+        neighbors.each { |neighbor| reveal_tile(neighbor) unless self[neighbor.first, neighbor.last].has_bomb } 
+    end 
+
+    def reveal_all_neighbors(neighbors) 
+        neighbors.each { |neighbor| reveal_tile(neighbor) }
+    end 
+
     def update_neighbors(revealed_tiles)
         neighbors = []
         revealed_tiles.each do |revealed_tile| 
-            neighbors_of_revealed_tile = self[revealed_tile.first, revealed_tile.last].neighbors
+            neighbors_of_revealed_tile = get_neighbors_of_position(revealed_tile)
             neighbors_of_revealed_tile.each { |neighbor_of_revealed_tile| neighbors << neighbor_of_revealed_tile }
         end 
         neighbors.uniq 
     end 
 
     def reveal_neighbor_tiles(position)
-        neighbors = self[position.first, position.last].neighbors
+        neighbors = get_neighbors_of_position(position)
         bombs_in_neighbors = false 
         while !bombs_in_neighbors 
-            if neighbors.any? { |neighbor| self[neighbor.first, neighbor.last].has_bomb }
+            if any_neighbors_have_bombs?(neighbors)
                 bombs_in_neighbors = true 
-                neighbors.each { |neighbor| reveal_tile(neighbor) unless self[neighbor.first, neighbor.last].has_bomb } 
+                reveal_neighbors_without_bombs(neighbors)
             else 
-                neighbors.each { |neighbor| reveal_tile(neighbor) }
+                reveal_all_neighbors(neighbors)
                 neighbors = update_neighbors(neighbors)
             end 
         end   
