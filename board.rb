@@ -207,10 +207,16 @@ class Board
         won? || lost? 
     end 
 
-    #method assigns tile values and prints board 
+    #method prints board 
     def render 
-        #assign tile values. load minesweeper board in 2D array so it can be drawn by drawgrid method. 
+        minesweeper_board = assign_tile_values_in_minesweeper_board
+        drawgrid(minesweeper_board) 
+    end 
+
+    #assign tile values. load minesweeper board in 2D array so it can be drawn by drawgrid method. 
+    def assign_tile_values_in_minesweeper_board 
         minesweeper_board = []
+
         board.each do |row| 
             row_arr = []
             row.each do |tile| 
@@ -236,8 +242,7 @@ class Board
             minesweeper_board << row_arr
         end 
 
-        #draw minesweeper board 
-        drawgrid(minesweeper_board) 
+        minesweeper_board
     end 
 
     #method renders an ASCII grid based on a 2D array
