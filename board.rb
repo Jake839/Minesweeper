@@ -3,8 +3,6 @@ require "byebug"
 
 class Board 
 
-    attr_accessor :saved
-
     #initialize each tile on the board 
     def initialize(board)
         row_idx = -1  
@@ -16,7 +14,6 @@ class Board
                 Tile.new(row_idx, col_idx)
             end 
         end  
-        @saved = false 
     end 
 
     def get_neighbors 
@@ -207,7 +204,7 @@ class Board
     end 
 
     def over? 
-        won? || lost? || saved 
+        won? || lost?
     end 
 
     #method prints board 

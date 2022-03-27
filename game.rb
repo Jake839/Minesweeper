@@ -4,7 +4,7 @@ require 'byebug'
 
 class Minesweeper 
 
-    attr_reader :game, :player
+    attr_reader :game, :player, :saved 
 
     #initialize a 2D array of a 9 x 9 minesweeper board 
     def initialize
@@ -12,6 +12,7 @@ class Minesweeper
         print "\nEnter your name: "
         user_name = gets.chomp 
         @player = user_name
+        @saved = false 
     end 
 
     def introduction 
@@ -23,6 +24,7 @@ class Minesweeper
         puts "If you think a tile has a bomb, then you can flag it. For ex., to flag tile 0,0 you'd enter f0,0"
         puts "To reveal a flagged tile, you must unflag it. For ex., to unflag tile 0,0 you'd enter u0,0"
         puts "To recap, enter r to reveal, f to flag, or u to unflag and then enter the tile's coordinates. Coordinates must be entered with a comma between them as shown in the above examples."
+        puts "You can also save your game by entering s."
         puts "Good Luck!"
     end 
 
@@ -34,13 +36,13 @@ class Minesweeper
     end 
 
     def run 
-        if saved_game
+        if File.file?('saved_game.yml')
             prompt_for_saved_game
         else 
             set_board
         end 
-
-        until game.over?
+       
+        until game.over? || saved 
             print_board
             player_entry = get_valid_player_entry
             if is_entry_s?(player_entry)
@@ -76,7 +78,7 @@ class Minesweeper
     end 
 
     def finish_game 
-        if game.saved       
+        if saved       
             puts "Game saved."
         elsif game.won? 
             print_board
@@ -131,17 +133,16 @@ class Minesweeper
     end 
 
     def save 
-        File.open("saved_game.yml", "w") { |file| file.write(self.to_yaml)}
-        game.saved = true
+        File.open("saved_game.yml", "w") { |file| file.write(game.to_yaml)}
+        @saved = true
     end 
 
     def prompt_for_saved_game
         puts "Do you want to continue your saved game? Enter y for yes or any other key for no."
         user_choice = gets.chomp.downcase 
         if user_choice == 'y'
-            Psych.unsafe_load(saved_game) 
-            saved_game = nil 
-            game.saved = false 
+            @game = Psych.unsafe_load(File.read("saved_game.yml"))
+            @saved = false 
         else   
             set_board 
         end 
