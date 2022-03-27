@@ -1,4 +1,5 @@
 require_relative "tile.rb"
+require 'colorize'
 require "byebug"
 
 class Board 
@@ -231,12 +232,24 @@ class Board
                         if tile.surrounding_bombs == 0 
                             tile.value = ' '
                         else 
-                            tile.value = tile.surrounding_bombs 
+                            tile.value = 
+                            case tile.surrounding_bombs 
+                            when 1 
+                                ' 1 '.colorize(:blue)
+                            when 2 
+                                ' 2 '.colorize(:green)
+                            when 3
+                                ' 3 '.colorize(:red)
+                            when 4
+                                ' 4 '.colorize(:cyan)
+                            else 
+                                "#{tile.surrounding_bombs}  ".colorize(:default)
+                            end 
                         end 
                     end 
                 else 
                     if tile.flagged
-                        tile.value = 'F'
+                        tile.value = ' F '.colorize(:magenta)
                     else     
                         tile.value = '*'
                     end 
