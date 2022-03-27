@@ -1,5 +1,6 @@
 require_relative "board.rb"
 require 'yaml'
+require 'Remedy'
 require 'byebug'
 
 class Minesweeper 
