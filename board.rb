@@ -157,11 +157,11 @@ class Board
     end 
 
     def reveal_neighbors_without_bombs(neighbors) 
-        neighbors.each { |neighbor| reveal_tile(neighbor) unless self[neighbor.first, neighbor.last].has_bomb } 
+        neighbors.each { |neighbor| reveal_tile(neighbor) if self[neighbor.first, neighbor.last].has_bomb == false && self[neighbor.first, neighbor.last].flagged == false }
     end 
 
     def reveal_all_neighbors(neighbors) 
-        neighbors.each { |neighbor| reveal_tile(neighbor) }
+        neighbors.each { |neighbor| reveal_tile(neighbor) if self[neighbor.first, neighbor.last].flagged == false } 
     end 
 
     def update_neighbors(revealed_tiles)
