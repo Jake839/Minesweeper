@@ -4,7 +4,6 @@ require 'byebug'
 
 class Minesweeper 
 
-    attr_accessor :saved_game
     attr_reader :game, :player
 
     #initialize a 2D array of a 9 x 9 minesweeper board 
@@ -13,7 +12,6 @@ class Minesweeper
         print "\nEnter your name: "
         user_name = gets.chomp 
         @player = user_name
-        @saved_game = nil 
     end 
 
     def introduction 
@@ -133,7 +131,7 @@ class Minesweeper
     end 
 
     def save 
-        @saved_game = self.to_yaml 
+        File.open("saved_game.yml", "w") { |file| file.write(self.to_yaml)}
         game.saved = true
     end 
 

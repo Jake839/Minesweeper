@@ -1,0 +1,1904 @@
+--- !ruby/object:Minesweeper
+player: Jake
+saved_game:
+game: !ruby/object:Board
+  board:
+  - - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: true
+      value: " "
+      position:
+      - 0
+      - 0
+      neighbors:
+      - - 0
+        - 1
+      - - 1
+        - 0
+      - - 1
+        - 1
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: true
+      value: " "
+      position:
+      - 0
+      - 1
+      neighbors:
+      - - 0
+        - 0
+      - - 0
+        - 2
+      - - 1
+        - 0
+      - - 1
+        - 1
+      - - 1
+        - 2
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: true
+      value: " "
+      position:
+      - 0
+      - 2
+      neighbors:
+      - - 0
+        - 1
+      - - 0
+        - 3
+      - - 1
+        - 1
+      - - 1
+        - 2
+      - - 1
+        - 3
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: true
+      value: " "
+      position:
+      - 0
+      - 3
+      neighbors:
+      - - 0
+        - 2
+      - - 0
+        - 4
+      - - 1
+        - 2
+      - - 1
+        - 3
+      - - 1
+        - 4
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 0
+      - 4
+      neighbors:
+      - - 0
+        - 3
+      - - 0
+        - 5
+      - - 1
+        - 3
+      - - 1
+        - 4
+      - - 1
+        - 5
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 0
+      - 5
+      neighbors:
+      - - 0
+        - 4
+      - - 0
+        - 6
+      - - 1
+        - 4
+      - - 1
+        - 5
+      - - 1
+        - 6
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 0
+      - 6
+      neighbors:
+      - - 0
+        - 5
+      - - 0
+        - 7
+      - - 1
+        - 5
+      - - 1
+        - 6
+      - - 1
+        - 7
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 0
+      - 7
+      neighbors:
+      - - 0
+        - 6
+      - - 0
+        - 8
+      - - 1
+        - 6
+      - - 1
+        - 7
+      - - 1
+        - 8
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 0
+      - 8
+      neighbors:
+      - - 0
+        - 7
+      - - 1
+        - 7
+      - - 1
+        - 8
+  - - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: true
+      value: " "
+      position:
+      - 1
+      - 0
+      neighbors:
+      - - 0
+        - 0
+      - - 0
+        - 1
+      - - 1
+        - 1
+      - - 2
+        - 0
+      - - 2
+        - 1
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: true
+      value: " "
+      position:
+      - 1
+      - 1
+      neighbors:
+      - - 0
+        - 0
+      - - 0
+        - 1
+      - - 0
+        - 2
+      - - 1
+        - 0
+      - - 1
+        - 2
+      - - 2
+        - 0
+      - - 2
+        - 1
+      - - 2
+        - 2
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: true
+      value: " "
+      position:
+      - 1
+      - 2
+      neighbors:
+      - - 0
+        - 1
+      - - 0
+        - 2
+      - - 0
+        - 3
+      - - 1
+        - 1
+      - - 1
+        - 3
+      - - 2
+        - 1
+      - - 2
+        - 2
+      - - 2
+        - 3
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: true
+      value: " "
+      position:
+      - 1
+      - 3
+      neighbors:
+      - - 0
+        - 2
+      - - 0
+        - 3
+      - - 0
+        - 4
+      - - 1
+        - 2
+      - - 1
+        - 4
+      - - 2
+        - 2
+      - - 2
+        - 3
+      - - 2
+        - 4
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 1
+      - 4
+      neighbors:
+      - - 0
+        - 3
+      - - 0
+        - 4
+      - - 0
+        - 5
+      - - 1
+        - 3
+      - - 1
+        - 5
+      - - 2
+        - 3
+      - - 2
+        - 4
+      - - 2
+        - 5
+    - !ruby/object:Tile
+      has_bomb: true
+      surrounding_bombs: 0
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 1
+      - 5
+      neighbors:
+      - - 0
+        - 4
+      - - 0
+        - 5
+      - - 0
+        - 6
+      - - 1
+        - 4
+      - - 1
+        - 6
+      - - 2
+        - 4
+      - - 2
+        - 5
+      - - 2
+        - 6
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 1
+      - 6
+      neighbors:
+      - - 0
+        - 5
+      - - 0
+        - 6
+      - - 0
+        - 7
+      - - 1
+        - 5
+      - - 1
+        - 7
+      - - 2
+        - 5
+      - - 2
+        - 6
+      - - 2
+        - 7
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 1
+      - 7
+      neighbors:
+      - - 0
+        - 6
+      - - 0
+        - 7
+      - - 0
+        - 8
+      - - 1
+        - 6
+      - - 1
+        - 8
+      - - 2
+        - 6
+      - - 2
+        - 7
+      - - 2
+        - 8
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 1
+      - 8
+      neighbors:
+      - - 0
+        - 7
+      - - 0
+        - 8
+      - - 1
+        - 7
+      - - 2
+        - 7
+      - - 2
+        - 8
+  - - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: true
+      value: 1
+      position:
+      - 2
+      - 0
+      neighbors:
+      - - 1
+        - 0
+      - - 1
+        - 1
+      - - 2
+        - 1
+      - - 3
+        - 0
+      - - 3
+        - 1
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: true
+      value: 1
+      position:
+      - 2
+      - 1
+      neighbors:
+      - - 1
+        - 0
+      - - 1
+        - 1
+      - - 1
+        - 2
+      - - 2
+        - 0
+      - - 2
+        - 2
+      - - 3
+        - 0
+      - - 3
+        - 1
+      - - 3
+        - 2
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: true
+      value: " "
+      position:
+      - 2
+      - 2
+      neighbors:
+      - - 1
+        - 1
+      - - 1
+        - 2
+      - - 1
+        - 3
+      - - 2
+        - 1
+      - - 2
+        - 3
+      - - 3
+        - 1
+      - - 3
+        - 2
+      - - 3
+        - 3
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: true
+      value: " "
+      position:
+      - 2
+      - 3
+      neighbors:
+      - - 1
+        - 2
+      - - 1
+        - 3
+      - - 1
+        - 4
+      - - 2
+        - 2
+      - - 2
+        - 4
+      - - 3
+        - 2
+      - - 3
+        - 3
+      - - 3
+        - 4
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 2
+      - 4
+      neighbors:
+      - - 1
+        - 3
+      - - 1
+        - 4
+      - - 1
+        - 5
+      - - 2
+        - 3
+      - - 2
+        - 5
+      - - 3
+        - 3
+      - - 3
+        - 4
+      - - 3
+        - 5
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 2
+      - 5
+      neighbors:
+      - - 1
+        - 4
+      - - 1
+        - 5
+      - - 1
+        - 6
+      - - 2
+        - 4
+      - - 2
+        - 6
+      - - 3
+        - 4
+      - - 3
+        - 5
+      - - 3
+        - 6
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 2
+      - 6
+      neighbors:
+      - - 1
+        - 5
+      - - 1
+        - 6
+      - - 1
+        - 7
+      - - 2
+        - 5
+      - - 2
+        - 7
+      - - 3
+        - 5
+      - - 3
+        - 6
+      - - 3
+        - 7
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 2
+      - 7
+      neighbors:
+      - - 1
+        - 6
+      - - 1
+        - 7
+      - - 1
+        - 8
+      - - 2
+        - 6
+      - - 2
+        - 8
+      - - 3
+        - 6
+      - - 3
+        - 7
+      - - 3
+        - 8
+    - !ruby/object:Tile
+      has_bomb: true
+      surrounding_bombs: 0
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 2
+      - 8
+      neighbors:
+      - - 1
+        - 7
+      - - 1
+        - 8
+      - - 2
+        - 7
+      - - 3
+        - 7
+      - - 3
+        - 8
+  - - !ruby/object:Tile
+      has_bomb: true
+      surrounding_bombs: 1
+      flagged: true
+      revealed: false
+      value: F
+      position:
+      - 3
+      - 0
+      neighbors:
+      - - 2
+        - 0
+      - - 2
+        - 1
+      - - 3
+        - 1
+      - - 4
+        - 0
+      - - 4
+        - 1
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 2
+      flagged: false
+      revealed: true
+      value: 2
+      position:
+      - 3
+      - 1
+      neighbors:
+      - - 2
+        - 0
+      - - 2
+        - 1
+      - - 2
+        - 2
+      - - 3
+        - 0
+      - - 3
+        - 2
+      - - 4
+        - 0
+      - - 4
+        - 1
+      - - 4
+        - 2
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: true
+      value: 1
+      position:
+      - 3
+      - 2
+      neighbors:
+      - - 2
+        - 1
+      - - 2
+        - 2
+      - - 2
+        - 3
+      - - 3
+        - 1
+      - - 3
+        - 3
+      - - 4
+        - 1
+      - - 4
+        - 2
+      - - 4
+        - 3
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: true
+      value: 1
+      position:
+      - 3
+      - 3
+      neighbors:
+      - - 2
+        - 2
+      - - 2
+        - 3
+      - - 2
+        - 4
+      - - 3
+        - 2
+      - - 3
+        - 4
+      - - 4
+        - 2
+      - - 4
+        - 3
+      - - 4
+        - 4
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 3
+      - 4
+      neighbors:
+      - - 2
+        - 3
+      - - 2
+        - 4
+      - - 2
+        - 5
+      - - 3
+        - 3
+      - - 3
+        - 5
+      - - 4
+        - 3
+      - - 4
+        - 4
+      - - 4
+        - 5
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 3
+      - 5
+      neighbors:
+      - - 2
+        - 4
+      - - 2
+        - 5
+      - - 2
+        - 6
+      - - 3
+        - 4
+      - - 3
+        - 6
+      - - 4
+        - 4
+      - - 4
+        - 5
+      - - 4
+        - 6
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 3
+      - 6
+      neighbors:
+      - - 2
+        - 5
+      - - 2
+        - 6
+      - - 2
+        - 7
+      - - 3
+        - 5
+      - - 3
+        - 7
+      - - 4
+        - 5
+      - - 4
+        - 6
+      - - 4
+        - 7
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 2
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 3
+      - 7
+      neighbors:
+      - - 2
+        - 6
+      - - 2
+        - 7
+      - - 2
+        - 8
+      - - 3
+        - 6
+      - - 3
+        - 8
+      - - 4
+        - 6
+      - - 4
+        - 7
+      - - 4
+        - 8
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 2
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 3
+      - 8
+      neighbors:
+      - - 2
+        - 7
+      - - 2
+        - 8
+      - - 3
+        - 7
+      - - 4
+        - 7
+      - - 4
+        - 8
+  - - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 2
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 4
+      - 0
+      neighbors:
+      - - 3
+        - 0
+      - - 3
+        - 1
+      - - 4
+        - 1
+      - - 5
+        - 0
+      - - 5
+        - 1
+    - !ruby/object:Tile
+      has_bomb: true
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 4
+      - 1
+      neighbors:
+      - - 3
+        - 0
+      - - 3
+        - 1
+      - - 3
+        - 2
+      - - 4
+        - 0
+      - - 4
+        - 2
+      - - 5
+        - 0
+      - - 5
+        - 1
+      - - 5
+        - 2
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 4
+      - 2
+      neighbors:
+      - - 3
+        - 1
+      - - 3
+        - 2
+      - - 3
+        - 3
+      - - 4
+        - 1
+      - - 4
+        - 3
+      - - 5
+        - 1
+      - - 5
+        - 2
+      - - 5
+        - 3
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 4
+      - 3
+      neighbors:
+      - - 3
+        - 2
+      - - 3
+        - 3
+      - - 3
+        - 4
+      - - 4
+        - 2
+      - - 4
+        - 4
+      - - 5
+        - 2
+      - - 5
+        - 3
+      - - 5
+        - 4
+    - !ruby/object:Tile
+      has_bomb: true
+      surrounding_bombs: 0
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 4
+      - 4
+      neighbors:
+      - - 3
+        - 3
+      - - 3
+        - 4
+      - - 3
+        - 5
+      - - 4
+        - 3
+      - - 4
+        - 5
+      - - 5
+        - 3
+      - - 5
+        - 4
+      - - 5
+        - 5
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 4
+      - 5
+      neighbors:
+      - - 3
+        - 4
+      - - 3
+        - 5
+      - - 3
+        - 6
+      - - 4
+        - 4
+      - - 4
+        - 6
+      - - 5
+        - 4
+      - - 5
+        - 5
+      - - 5
+        - 6
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 4
+      - 6
+      neighbors:
+      - - 3
+        - 5
+      - - 3
+        - 6
+      - - 3
+        - 7
+      - - 4
+        - 5
+      - - 4
+        - 7
+      - - 5
+        - 5
+      - - 5
+        - 6
+      - - 5
+        - 7
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 4
+      - 7
+      neighbors:
+      - - 3
+        - 6
+      - - 3
+        - 7
+      - - 3
+        - 8
+      - - 4
+        - 6
+      - - 4
+        - 8
+      - - 5
+        - 6
+      - - 5
+        - 7
+      - - 5
+        - 8
+    - !ruby/object:Tile
+      has_bomb: true
+      surrounding_bombs: 0
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 4
+      - 8
+      neighbors:
+      - - 3
+        - 7
+      - - 3
+        - 8
+      - - 4
+        - 7
+      - - 5
+        - 7
+      - - 5
+        - 8
+  - - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 5
+      - 0
+      neighbors:
+      - - 4
+        - 0
+      - - 4
+        - 1
+      - - 5
+        - 1
+      - - 6
+        - 0
+      - - 6
+        - 1
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 5
+      - 1
+      neighbors:
+      - - 4
+        - 0
+      - - 4
+        - 1
+      - - 4
+        - 2
+      - - 5
+        - 0
+      - - 5
+        - 2
+      - - 6
+        - 0
+      - - 6
+        - 1
+      - - 6
+        - 2
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 2
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 5
+      - 2
+      neighbors:
+      - - 4
+        - 1
+      - - 4
+        - 2
+      - - 4
+        - 3
+      - - 5
+        - 1
+      - - 5
+        - 3
+      - - 6
+        - 1
+      - - 6
+        - 2
+      - - 6
+        - 3
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 2
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 5
+      - 3
+      neighbors:
+      - - 4
+        - 2
+      - - 4
+        - 3
+      - - 4
+        - 4
+      - - 5
+        - 2
+      - - 5
+        - 4
+      - - 6
+        - 2
+      - - 6
+        - 3
+      - - 6
+        - 4
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 2
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 5
+      - 4
+      neighbors:
+      - - 4
+        - 3
+      - - 4
+        - 4
+      - - 4
+        - 5
+      - - 5
+        - 3
+      - - 5
+        - 5
+      - - 6
+        - 3
+      - - 6
+        - 4
+      - - 6
+        - 5
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 5
+      - 5
+      neighbors:
+      - - 4
+        - 4
+      - - 4
+        - 5
+      - - 4
+        - 6
+      - - 5
+        - 4
+      - - 5
+        - 6
+      - - 6
+        - 4
+      - - 6
+        - 5
+      - - 6
+        - 6
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 5
+      - 6
+      neighbors:
+      - - 4
+        - 5
+      - - 4
+        - 6
+      - - 4
+        - 7
+      - - 5
+        - 5
+      - - 5
+        - 7
+      - - 6
+        - 5
+      - - 6
+        - 6
+      - - 6
+        - 7
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 5
+      - 7
+      neighbors:
+      - - 4
+        - 6
+      - - 4
+        - 7
+      - - 4
+        - 8
+      - - 5
+        - 6
+      - - 5
+        - 8
+      - - 6
+        - 6
+      - - 6
+        - 7
+      - - 6
+        - 8
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 5
+      - 8
+      neighbors:
+      - - 4
+        - 7
+      - - 4
+        - 8
+      - - 5
+        - 7
+      - - 6
+        - 7
+      - - 6
+        - 8
+  - - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 6
+      - 0
+      neighbors:
+      - - 5
+        - 0
+      - - 5
+        - 1
+      - - 6
+        - 1
+      - - 7
+        - 0
+      - - 7
+        - 1
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 6
+      - 1
+      neighbors:
+      - - 5
+        - 0
+      - - 5
+        - 1
+      - - 5
+        - 2
+      - - 6
+        - 0
+      - - 6
+        - 2
+      - - 7
+        - 0
+      - - 7
+        - 1
+      - - 7
+        - 2
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 2
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 6
+      - 2
+      neighbors:
+      - - 5
+        - 1
+      - - 5
+        - 2
+      - - 5
+        - 3
+      - - 6
+        - 1
+      - - 6
+        - 3
+      - - 7
+        - 1
+      - - 7
+        - 2
+      - - 7
+        - 3
+    - !ruby/object:Tile
+      has_bomb: true
+      surrounding_bombs: 2
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 6
+      - 3
+      neighbors:
+      - - 5
+        - 2
+      - - 5
+        - 3
+      - - 5
+        - 4
+      - - 6
+        - 2
+      - - 6
+        - 4
+      - - 7
+        - 2
+      - - 7
+        - 3
+      - - 7
+        - 4
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 2
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 6
+      - 4
+      neighbors:
+      - - 5
+        - 3
+      - - 5
+        - 4
+      - - 5
+        - 5
+      - - 6
+        - 3
+      - - 6
+        - 5
+      - - 7
+        - 3
+      - - 7
+        - 4
+      - - 7
+        - 5
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 6
+      - 5
+      neighbors:
+      - - 5
+        - 4
+      - - 5
+        - 5
+      - - 5
+        - 6
+      - - 6
+        - 4
+      - - 6
+        - 6
+      - - 7
+        - 4
+      - - 7
+        - 5
+      - - 7
+        - 6
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 6
+      - 6
+      neighbors:
+      - - 5
+        - 5
+      - - 5
+        - 6
+      - - 5
+        - 7
+      - - 6
+        - 5
+      - - 6
+        - 7
+      - - 7
+        - 5
+      - - 7
+        - 6
+      - - 7
+        - 7
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 6
+      - 7
+      neighbors:
+      - - 5
+        - 6
+      - - 5
+        - 7
+      - - 5
+        - 8
+      - - 6
+        - 6
+      - - 6
+        - 8
+      - - 7
+        - 6
+      - - 7
+        - 7
+      - - 7
+        - 8
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 6
+      - 8
+      neighbors:
+      - - 5
+        - 7
+      - - 5
+        - 8
+      - - 6
+        - 7
+      - - 7
+        - 7
+      - - 7
+        - 8
+  - - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 7
+      - 0
+      neighbors:
+      - - 6
+        - 0
+      - - 6
+        - 1
+      - - 7
+        - 1
+      - - 8
+        - 0
+      - - 8
+        - 1
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 7
+      - 1
+      neighbors:
+      - - 6
+        - 0
+      - - 6
+        - 1
+      - - 6
+        - 2
+      - - 7
+        - 0
+      - - 7
+        - 2
+      - - 8
+        - 0
+      - - 8
+        - 1
+      - - 8
+        - 2
+    - !ruby/object:Tile
+      has_bomb: true
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 7
+      - 2
+      neighbors:
+      - - 6
+        - 1
+      - - 6
+        - 2
+      - - 6
+        - 3
+      - - 7
+        - 1
+      - - 7
+        - 3
+      - - 8
+        - 1
+      - - 8
+        - 2
+      - - 8
+        - 3
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 3
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 7
+      - 3
+      neighbors:
+      - - 6
+        - 2
+      - - 6
+        - 3
+      - - 6
+        - 4
+      - - 7
+        - 2
+      - - 7
+        - 4
+      - - 8
+        - 2
+      - - 8
+        - 3
+      - - 8
+        - 4
+    - !ruby/object:Tile
+      has_bomb: true
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 7
+      - 4
+      neighbors:
+      - - 6
+        - 3
+      - - 6
+        - 4
+      - - 6
+        - 5
+      - - 7
+        - 3
+      - - 7
+        - 5
+      - - 8
+        - 3
+      - - 8
+        - 4
+      - - 8
+        - 5
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 7
+      - 5
+      neighbors:
+      - - 6
+        - 4
+      - - 6
+        - 5
+      - - 6
+        - 6
+      - - 7
+        - 4
+      - - 7
+        - 6
+      - - 8
+        - 4
+      - - 8
+        - 5
+      - - 8
+        - 6
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 7
+      - 6
+      neighbors:
+      - - 6
+        - 5
+      - - 6
+        - 6
+      - - 6
+        - 7
+      - - 7
+        - 5
+      - - 7
+        - 7
+      - - 8
+        - 5
+      - - 8
+        - 6
+      - - 8
+        - 7
+    - !ruby/object:Tile
+      has_bomb: true
+      surrounding_bombs: 0
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 7
+      - 7
+      neighbors:
+      - - 6
+        - 6
+      - - 6
+        - 7
+      - - 6
+        - 8
+      - - 7
+        - 6
+      - - 7
+        - 8
+      - - 8
+        - 6
+      - - 8
+        - 7
+      - - 8
+        - 8
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 7
+      - 8
+      neighbors:
+      - - 6
+        - 7
+      - - 6
+        - 8
+      - - 7
+        - 7
+      - - 8
+        - 7
+      - - 8
+        - 8
+  - - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 0
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 8
+      - 0
+      neighbors:
+      - - 7
+        - 0
+      - - 7
+        - 1
+      - - 8
+        - 1
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 8
+      - 1
+      neighbors:
+      - - 7
+        - 0
+      - - 7
+        - 1
+      - - 7
+        - 2
+      - - 8
+        - 0
+      - - 8
+        - 2
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 8
+      - 2
+      neighbors:
+      - - 7
+        - 1
+      - - 7
+        - 2
+      - - 7
+        - 3
+      - - 8
+        - 1
+      - - 8
+        - 3
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 2
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 8
+      - 3
+      neighbors:
+      - - 7
+        - 2
+      - - 7
+        - 3
+      - - 7
+        - 4
+      - - 8
+        - 2
+      - - 8
+        - 4
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 8
+      - 4
+      neighbors:
+      - - 7
+        - 3
+      - - 7
+        - 4
+      - - 7
+        - 5
+      - - 8
+        - 3
+      - - 8
+        - 5
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 8
+      - 5
+      neighbors:
+      - - 7
+        - 4
+      - - 7
+        - 5
+      - - 7
+        - 6
+      - - 8
+        - 4
+      - - 8
+        - 6
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 8
+      - 6
+      neighbors:
+      - - 7
+        - 5
+      - - 7
+        - 6
+      - - 7
+        - 7
+      - - 8
+        - 5
+      - - 8
+        - 7
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 8
+      - 7
+      neighbors:
+      - - 7
+        - 6
+      - - 7
+        - 7
+      - - 7
+        - 8
+      - - 8
+        - 6
+      - - 8
+        - 8
+    - !ruby/object:Tile
+      has_bomb: false
+      surrounding_bombs: 1
+      flagged: false
+      revealed: false
+      value: "*"
+      position:
+      - 8
+      - 8
+      neighbors:
+      - - 7
+        - 7
+      - - 7
+        - 8
+      - - 8
+        - 7
+  saved: false
