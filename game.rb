@@ -5,6 +5,7 @@ require 'byebug'
 
 class Minesweeper 
 
+    attr_accessor :board_size 
     attr_reader :game, :player, :saved 
 
     #initialize a 2D array of a 9 x 9 minesweeper board 
@@ -13,6 +14,7 @@ class Minesweeper
         print "\nEnter your name: "
         user_name = gets.chomp 
         @player = user_name
+        @board_size = pick_size
         @saved = false 
     end 
 
@@ -29,8 +31,40 @@ class Minesweeper
         puts "Good Luck!"
     end 
 
+    def pick_size 
+        valid_size = false 
+        while !valid_size
+            clear 
+            puts "#{@player}, pick a size for the Minesweeper Board. Enter 1, 2, 3, or 4."
+            puts "1) 9 x 9 board"
+            puts "2) 10 x 10 board"
+            puts "3) 15 x 15 board"
+            puts "4) 20 x 20 board"
+            user_size = gets.chomp 
+            if ["1", "2", "3", "4"].include?(user_size) 
+                valid_size = true 
+            else 
+                puts "Invalid choice. Please enter 1, 2, 3, or 4."
+            end 
+        end 
+        translate_user_size_to_board_size(user_size)
+    end 
+
+    def translate_user_size_to_board_size(user_size)
+        case user_size
+        when '1' 
+            9 
+        when '2' 
+            10 
+        when '3' 
+            15
+        when '4' 
+            20 
+        end 
+    end 
+
     def set_board
-        @game = Board.new(Array.new(9) { Array.new(9) })
+        @game = Board.new(Array.new(board_size) { Array.new(board_size) }, board_size) 
         game.get_neighbors
         game.set_bombs 
         game.calculate_surrounding_bombs 
@@ -96,6 +130,10 @@ class Minesweeper
         game.render 
     end 
 
+    def clear 
+        system("clear")
+    end 
+
     def is_entry_s?(entry)
         entry == 's'
     end 
@@ -126,11 +164,7 @@ class Minesweeper
         return false if !user_entry.include?(',')
         pos_arr = user_entry.split(',')
         return false if pos_arr.any? { |char| char.length != 1 } 
-        if pos_arr.all? { |char| char.ord >= 48 && char.ord <= 56 }
-            true 
-        else 
-            false 
-        end 
+        pos_arr.all? { |char| ('0'..String(board_size - 1)).include?(char) }
     end 
 
     def save 

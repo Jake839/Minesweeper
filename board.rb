@@ -5,7 +5,7 @@ require "byebug"
 class Board 
 
     #initialize each tile on the board 
-    def initialize(board)
+    def initialize(board, board_size)
         row_idx = -1  
         @board = board.map do |row| 
             row_idx += 1 
@@ -15,6 +15,7 @@ class Board
                 Tile.new(row_idx, col_idx)
             end 
         end  
+        @board_size = board_size 
     end 
 
     def get_neighbors 
@@ -61,7 +62,8 @@ class Board
     def set_bombs
         all_positions = get_all_positions 
         bomb_ct = 0 
-        until bomb_ct == 10 
+        bombs_to_be_set = ((board_size ** 2) / board_size) + 1 
+        until bomb_ct == bombs_to_be_set 
             selected_position = all_positions.sample 
             unless position_has_bomb?(selected_position)
                 set_bomb(selected_position)
@@ -106,7 +108,7 @@ class Board
     end 
 
     def in_valid_range?(num)
-        (0..8).include?(num) 
+        (0..board_size - 1).include?(num) 
     end 
 
     def get_tiles_without_bombs
@@ -265,13 +267,16 @@ class Board
     #method renders an ASCII grid based on a 2D array
     def drawgrid(args, boxlen=3)
         #Define box drawing characters
-        side = '│'
+        side = '│' 
         topbot = '─'
-        tl = ' ┌'
+        tl = '  ┌' if board_size <= 10 
+        tl = '   ┌' if board_size >= 11 
         tr = '┐'
-        bl = ' └'
+        bl = '  └' if board_size <= 10 
+        bl = '   └' if board_size >= 11 
         br = '┘'
-        lc = ' ├'
+        lc = '  ├' if board_size <= 10 
+        lc = '   ├' if board_size >= 11 
         rc = '┤'
         tc = '┬'
         bc = '┴'
@@ -292,12 +297,18 @@ class Board
             draw << "\n" if rowindex == 0
 
             # MIDDLE OF ROW: DATA
-            row.each_with_index do |col, index|
-                if ((board_row_idx % 9 == 0 && board_row_idx >= 9) || board_row_idx == 0) && index == 0 
-                    draw << "#{board_row_idx / 9}" 
+            #debugger 
+            row.each_with_index do |col, index| 
+                if index == 0 
+                    if board_size <= 10 
+                        draw << String(board_row_idx) + " " + side + col.to_s.center(boxlen) 
+                    elsif board_size > 10 
+                        draw << String(board_row_idx) + "  " + side + col.to_s.center(boxlen) if board_row_idx < 10 
+                        draw << String(board_row_idx) + " " + side + col.to_s.center(boxlen) if board_row_idx >= 10 
+                    end 
+                else 
+                    draw << side + col.to_s.center(boxlen)
                 end 
-                draw << side + col.to_s.center(boxlen)
-                board_row_idx += 1 
             end
             draw << side + "\n"
 
@@ -322,10 +333,11 @@ class Board
             end
 
             draw << "\n"
+            board_row_idx += 1 
         end
 
         puts "MINESWEEPER\n".rjust(25)
-        (0...9).each { |i| print "   #{i}" } 
+        (0...board_size).each { |i| print "   #{i}" } 
         puts "\n"
         draw.each { |char| print "#{char}" } 
 
@@ -333,7 +345,7 @@ class Board
     end 
 
     private
-    attr_reader :board 
+    attr_reader :board, :board_size
 
 end 
 
