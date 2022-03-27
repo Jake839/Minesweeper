@@ -10,7 +10,6 @@ class Minesweeper
     #initialize a 2D array of a 9 x 9 minesweeper board 
     def initialize
         introduction 
-        @game = Board.new(Array.new(9) { Array.new(9) })
         print "\nEnter your name: "
         user_name = gets.chomp 
         @player = user_name
@@ -29,21 +28,30 @@ class Minesweeper
         puts "Good Luck!"
     end 
 
-    def run 
+    def set_board
+        @game = Board.new(Array.new(9) { Array.new(9) })
         game.get_neighbors
         game.set_bombs 
         game.calculate_surrounding_bombs 
-        game.render 
+    end 
+
+    def run 
+        if saved_game
+            prompt_for_saved_game
+        else 
+            set_board
+        end 
+
         until game.over?
+            print_board
             player_entry = get_valid_player_entry
             if is_entry_s?(player_entry)
-                @saved_game = save
-                game.saved = true 
+                save 
             else 
                 game.update_tile(player_entry)
-                print_board
             end 
         end 
+
         finish_game
     end 
 
@@ -71,8 +79,9 @@ class Minesweeper
 
     def finish_game 
         if game.saved       
-            puts "Game saved to saved_game."
+            puts "Game saved."
         elsif game.won? 
+            print_board
             puts "Congratulations! You beat Minesweeper!"
         else 
             game.reveal_all_bombs 
@@ -124,7 +133,20 @@ class Minesweeper
     end 
 
     def save 
-        self.to_yaml 
+        @saved_game = self.to_yaml 
+        game.saved = true
+    end 
+
+    def prompt_for_saved_game
+        puts "Do you want to continue your saved game? Enter y for yes or any other key for no."
+        user_choice = gets.chomp.downcase 
+        if user_choice == 'y'
+            Psych.unsafe_load(saved_game) 
+            saved_game = nil 
+            game.saved = false 
+        else   
+            set_board 
+        end 
     end 
 
 end 
