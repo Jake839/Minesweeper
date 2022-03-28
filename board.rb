@@ -4,6 +4,8 @@ require "byebug"
 
 class Board 
 
+    attr_accessor :start_time
+
     #initialize each tile on the board 
     def initialize(board, board_size)
         row_idx = -1  
@@ -16,6 +18,7 @@ class Board
             end 
         end  
         @board_size = board_size 
+        @start_time = Time.now 
     end 
 
     def get_neighbors 
@@ -361,9 +364,53 @@ class Board
         end 
     end 
 
+    def get_time_to_win_game
+        secs = (Time.now - start_time).round 
+        return '0 seconds' if secs == 0 
+        minutes = 0 
+        hours = 0 
+
+        #count seconds, minutes, & hours  
+        if secs < 60 
+            seconds = secs 
+        else  
+            seconds = (secs % 60).round  
+            minutes = ((secs / 60) % 60).round 
+            hours = (secs / 3600).round 
+        end 
+
+        #make seconds string 
+        if seconds == 1 
+            secs_string = "#{seconds} second"
+        else 
+            secs_string = "#{seconds} seconds"
+        end 
+
+        #make minutes string 
+        if minutes == 1 
+            mins_string = "#{minutes} minute"
+        else 
+            mins_string = "#{minutes} minutes"
+        end 
+
+        #make hours string 
+        if hours == 1 
+            hrs_string = "#{hours} hour"
+        else 
+            hrs_string = "#{hours} hours"
+        end 
+
+        #return time string 
+        time_string = [] 
+        time_string << hrs_string if hours >= 1 
+        time_string << mins_string if minutes >= 1 
+        time_string << secs_string if seconds >= 1 
+        time_string.join(' ')
+    end 
+
     private
     attr_reader :board, :board_size
-
+    
 end 
 
 
