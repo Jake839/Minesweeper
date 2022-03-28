@@ -32,9 +32,9 @@ class Minesweeper
     end 
 
     def pick_size 
+        clear 
         valid_size = false 
         while !valid_size
-            clear 
             puts "#{@player}, pick a size for the Minesweeper Board. Enter 1, 2, 3, or 4."
             puts "1) 9 x 9 board"
             puts "2) 10 x 10 board"
@@ -44,7 +44,8 @@ class Minesweeper
             if ["1", "2", "3", "4"].include?(user_size) 
                 valid_size = true 
             else 
-                puts "Invalid choice. Please enter 1, 2, 3, or 4."
+                clear 
+                puts "Invalid choice."
             end 
         end 
         translate_user_size_to_board_size(user_size)

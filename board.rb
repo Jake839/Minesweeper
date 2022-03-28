@@ -336,12 +336,29 @@ class Board
             board_row_idx += 1 
         end
 
-        puts "MINESWEEPER\n".rjust(25)
-        (0...board_size).each { |i| print "   #{i}" } 
+        print_title_and_x_axis
         puts "\n"
         draw.each { |char| print "#{char}" } 
 
         true
+    end 
+
+    def print_title_and_x_axis 
+        puts "MINESWEEPER\n".rjust(27) if board_size == 9 
+        puts "MINESWEEPER\n".rjust(29) if board_size == 10 
+        puts "MINESWEEPER\n".rjust(40) if board_size == 15 
+        puts "MINESWEEPER\n".rjust(50) if board_size == 20 
+        if board_size <= 10 
+            print " " 
+            (0...board_size).each { |i| print "   #{i}" } 
+        else 
+            print "  "
+            (0..9).each { |i| print "   #{i}" } 
+            print "  "
+            (10..board_size - 1).each do |i| 
+                print " #{i} " 
+            end 
+        end 
     end 
 
     private
