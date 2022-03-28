@@ -5,7 +5,7 @@ require 'byebug'
 
 class Minesweeper 
 
-    attr_accessor :board_size 
+    attr_accessor :board_size, :start_time
     attr_reader :game, :player, :saved 
 
     #initialize a 2D array of a 9 x 9 minesweeper board 
@@ -72,6 +72,7 @@ class Minesweeper
     end 
 
     def run 
+        @start_time = Time.now 
         if File.file?('saved_game.yml')
             prompt_for_saved_game
         else 
@@ -117,8 +118,10 @@ class Minesweeper
         if saved       
             puts "Game saved."
         elsif game.won? 
+            time_to_win_game = get_time_to_win_game(Time.now - start_time) 
             print_board
             puts "Congratulations! You beat Minesweeper!"
+            puts "Won in #{time_to_win_game}."
         else 
             game.reveal_all_bombs 
             print_board
@@ -183,5 +186,50 @@ class Minesweeper
         end 
     end 
 
+    def get_time_to_win_game(secs)
+        secs = secs.round 
+        return '0 seconds' if secs == 0 
+        minutes = 0 
+        hours = 0 
+
+        #count seconds, minutes, & hours  
+        if secs < 60 
+            seconds = secs 
+        else  
+            seconds = (secs % 60).round  
+            minutes = ((secs / 60) % 60).round 
+            hours = (secs / 3600).round 
+        end 
+
+        #make seconds string 
+        if seconds == 1 
+            secs_string = "#{seconds} second"
+        else 
+            secs_string = "#{seconds} seconds"
+        end 
+
+        #make minutes string 
+        if minutes == 1 
+            mins_string = "#{minutes} minute"
+        else 
+            mins_string = "#{minutes} minutes"
+        end 
+
+        #make hours string 
+        if hours == 1 
+            hrs_string = "#{hours} hour"
+        else 
+            hrs_string = "#{hours} hours"
+        end 
+
+        #return time string 
+        time_string = [] 
+        time_string << hrs_string if hours >= 1 
+        time_string << mins_string if minutes >= 1 
+        time_string << secs_string if seconds >= 1 
+        time_string.join(' ')
+    end 
+
 end 
+
 
