@@ -164,8 +164,7 @@ class Minesweeper
         user_entry = user_entry[1..-1]
         return false if !user_entry.include?(',')
         pos_arr = user_entry.split(',')
-        return false if pos_arr.any? { |char| char.length != 1 } 
-        pos_arr.all? { |char| ('0'..String(board_size - 1)).include?(char) }
+        pos_arr.all? { |el| ('0'..String(board_size - 1)).include?(el) }
     end 
 
     def save 
