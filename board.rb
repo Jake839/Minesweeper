@@ -151,7 +151,7 @@ class Board
         position = get_player_entry_position(player_entry)
         if player_entry[0] == 'r' 
             reveal_tile(position)
-            reveal_neighbor_tiles(position)
+            reveal_neighbor_tiles(position) unless position_has_bomb?(position)
         elsif player_entry[0] == 'f'
             flag_tile(position)
         elsif player_entry[0] == 'u'
