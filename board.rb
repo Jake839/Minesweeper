@@ -250,7 +250,7 @@ class Board
                             when 4
                                 ' 4 '.colorize(:cyan)
                             else 
-                                "#{tile.surrounding_bombs}  ".colorize(:default)
+                                " #{tile.surrounding_bombs} ".colorize(:default)
                             end 
                         end 
                     end 
@@ -378,12 +378,16 @@ class Board
         @total_time += session_time
     end 
 
-    def get_time_to_win_game
+    def calculate_secs 
         if total_time 
             secs = session_time + total_time 
         else 
             secs = session_time
         end 
+    end 
+
+    def get_time_to_win_game
+        secs = calculate_secs 
 
         return '0 seconds' if secs == 0 
         minutes = 0 
@@ -419,12 +423,14 @@ class Board
             hrs_string = "#{hours} hours"
         end 
 
-        #return time string 
+        #make time string 
         time_string = [] 
         time_string << hrs_string if hours >= 1 
         time_string << mins_string if minutes >= 1 
         time_string << secs_string if seconds >= 1 
-        time_string.join(' ')
+
+        #return time string, seconds to win game 
+        [time_string.join(' '), secs] 
     end 
 
     private

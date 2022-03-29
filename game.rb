@@ -5,13 +5,16 @@ require 'byebug'
 
 class Minesweeper 
 
-    attr_accessor :board_size
+    attr_accessor :board_size, :leaderboard, :secs, :time_to_win_game
     attr_reader :game, :player, :saved 
 
     #initialize a 2D array of a 9 x 9 minesweeper board 
     def initialize
         get_player_name
         @saved = false 
+        @time_to_win_game = 0 
+        @secs = 0
+        @leaderboard = {}
 
         #check if there is a saved game
         if File.file?('saved_game.yml')  
@@ -126,15 +129,56 @@ class Minesweeper
         if saved       
             puts "Game saved."
         elsif game.won? 
-            time_to_win_game = game.get_time_to_win_game 
+            @time_to_win_game, @secs = game.get_time_to_win_game 
             print_board
             puts "Congratulations! You beat Minesweeper!"
             puts "Won in #{time_to_win_game}."
+            show_leaderboard
         else 
             game.reveal_all_bombs 
             print_board
             puts "You hit a bomb. You lose. Game over."
         end 
+    end 
+
+    def leaderboard_exists?
+        File.file?("leaderboard_#{board_size}x#{board_size}.yml") 
+    end 
+
+    def update_leaderboard_for_winner
+        @leaderboard[player] = [time_to_win_game, secs]
+    end 
+
+    def load_leaderboard  
+        @leaderboard = Psych.unsafe_load(File.read("leaderboard_#{board_size}x#{board_size}.yml"))
+    end 
+
+    def save_leaderboard 
+        File.open("leaderboard_#{board_size}x#{board_size}.yml", "w") { |file| file.write(leaderboard.to_yaml)}
+    end 
+
+    def sort_leaderboard 
+        leaderboard_arr = leaderboard.sort_by { |name, win_data| win_data[1] }
+        leaderboard_arr[0..9]
+    end 
+
+    def revise_leaderboard(leaderboard_arr)
+        leaderboard_arr.each { |leader| @leaderboard[leader[0]] = [leader[1][0], leader[1][1]] } 
+    end 
+
+    def render_leaderboard(leaderboard_arr)
+        puts "\nLEADERBOARD"
+        leaderboard_arr.each_with_index { |leader, idx| puts "#{idx + 1}) #{leader[0]} - #{leader[1][0]}" }
+        true 
+    end 
+
+    def show_leaderboard
+        load_leaderboard if leaderboard_exists? 
+        update_leaderboard_for_winner
+        leaderboard_arr = sort_leaderboard
+        revise_leaderboard(leaderboard_arr) 
+        save_leaderboard
+        render_leaderboard(leaderboard_arr)
     end 
 
     def print_board 
