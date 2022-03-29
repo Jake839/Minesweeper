@@ -1,6 +1,5 @@
 require_relative "tile.rb"
 require 'colorize'
-require "byebug"
 
 class Board 
 
