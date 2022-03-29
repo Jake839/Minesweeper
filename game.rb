@@ -133,7 +133,7 @@ class Minesweeper
             print_board
             puts "Congratulations! You beat Minesweeper!"
             puts "Won in #{time_to_win_game}."
-            show_leaderboard
+            run_leaderboard
         else 
             game.reveal_all_bombs 
             print_board
@@ -172,7 +172,7 @@ class Minesweeper
         true 
     end 
 
-    def show_leaderboard
+    def run_leaderboard
         load_leaderboard if leaderboard_exists? 
         update_leaderboard_for_winner
         leaderboard_arr = sort_leaderboard
