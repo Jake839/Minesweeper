@@ -4,7 +4,8 @@ require "byebug"
 
 class Board 
 
-    attr_accessor :start_time
+    attr_accessor :start_time, :total_time
+    attr_reader :board_size
 
     #initialize each tile on the board 
     def initialize(board, board_size)
@@ -18,7 +19,8 @@ class Board
             end 
         end  
         @board_size = board_size 
-        @start_time = Time.now 
+        set_start_time
+        @total_time = 0  
     end 
 
     def get_neighbors 
@@ -364,8 +366,25 @@ class Board
         end 
     end 
 
+    def set_start_time
+        @start_time = Time.now 
+    end 
+
+    def session_time 
+        (Time.now - start_time).round 
+    end 
+
+    def update_time
+        @total_time += session_time
+    end 
+
     def get_time_to_win_game
-        secs = (Time.now - start_time).round 
+        if total_time 
+            secs = session_time + total_time 
+        else 
+            secs = session_time
+        end 
+
         return '0 seconds' if secs == 0 
         minutes = 0 
         hours = 0 
@@ -409,8 +428,8 @@ class Board
     end 
 
     private
-    attr_reader :board, :board_size
-    
+    attr_reader :board
+
 end 
 
 

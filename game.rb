@@ -10,12 +10,21 @@ class Minesweeper
 
     #initialize a 2D array of a 9 x 9 minesweeper board 
     def initialize
-        introduction 
+        get_player_name
+        @saved = false 
+
+        #check if there is a saved game
+        if File.file?('saved_game.yml')  
+            prompt_for_saved_game
+        else   
+            start_game
+        end 
+    end 
+
+    def get_player_name 
         print "\nEnter your name: "
         user_name = gets.chomp 
-        @player = user_name
-        @board_size = pick_size
-        @saved = false 
+        @player = user_name 
     end 
 
     def introduction 
@@ -51,6 +60,19 @@ class Minesweeper
         translate_user_size_to_board_size(user_size)
     end 
 
+    def set_board
+        @game = Board.new(Array.new(board_size) { Array.new(board_size) }, board_size) 
+        game.get_neighbors
+        game.set_bombs 
+        game.calculate_surrounding_bombs 
+    end 
+
+    def start_game 
+        introduction 
+        @board_size = pick_size
+        set_board
+    end 
+
     def translate_user_size_to_board_size(user_size)
         case user_size
         when '1' 
@@ -64,20 +86,7 @@ class Minesweeper
         end 
     end 
 
-    def set_board
-        @game = Board.new(Array.new(board_size) { Array.new(board_size) }, board_size) 
-        game.get_neighbors
-        game.set_bombs 
-        game.calculate_surrounding_bombs 
-    end 
-
     def run 
-        if File.file?('saved_game.yml')
-            prompt_for_saved_game
-        else 
-            set_board
-        end 
-       
         until game.over? || saved 
             print_board
             player_entry = get_valid_player_entry
@@ -166,10 +175,11 @@ class Minesweeper
         user_entry = user_entry[1..-1]
         return false if !user_entry.include?(',')
         pos_arr = user_entry.split(',')
-        pos_arr.all? { |el| ('0'..String(board_size - 1)).include?(el) }
+        pos_arr.all? { |el| ('0'..String(game.board_size - 1)).include?(el) }
     end 
 
     def save 
+        game.update_time 
         File.open("saved_game.yml", "w") { |file| file.write(game.to_yaml)}
         @saved = true
     end 
@@ -180,8 +190,9 @@ class Minesweeper
         if user_choice == 'y'
             @game = Psych.unsafe_load(File.read("saved_game.yml"))
             @saved = false 
+            game.set_start_time
         else   
-            set_board 
+            start_game
         end 
     end 
 
